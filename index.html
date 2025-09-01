@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .slide-in {
+            animation: slideIn 0.6s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-stethoscope text-blue-600 text-2xl"></i>
+                    <span class="text-2xl font-bold text-gray-800">MediBook</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-600 hover:text-blue-600 transition-colors">Home</a>
+                    <a href="#doctors" class="text-gray-600 hover:text-blue-600 transition-colors">Doctors</a>
+                    <a href="#appointment" class="text-gray-600 hover:text-blue-600 transition-colors">Book Appointment</a>
+                    <a href="#about" class="text-gray-600 hover:text-blue-600 transition-colors">About</a>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <button onclick="showLoginModal()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        Login
+                    </button>
+                    <button onclick="showRegisterModal()" class="border border-blue-600 text-blue-600 px-6 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition-colors">
+                        Register
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg text-white py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <h1 class="text-5xl font-bold mb-6">Your Health, Our Priority</h1>
+                    <p class="text-xl mb-8">Book appointments with the best doctors in town. Fast, reliable, and convenient healthcare at your fingertips.</p>
+                    <button onclick="showAppointmentModal()" class="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors animate-pulse-slow">
+                        Book Appointment Now
+                    </button>
+                </div>
+                <div class="slide-in">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9811a171-72a7-4d50-b65f-bbc9ffa4002e.png" alt="Modern healthcare facility with doctors and patients in a clean, bright hospital environment" class="rounded-lg shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctors Section -->
+    <section id="doctors" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-16">Our Expert Doctors</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Doctor 1 -->
+                <div class="card-hover bg-white rounded-xl shadow-lg p-6 text-center">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2d1dab79-602f-4ac4-8b3a-1f270b5c7f48.png" alt="Dr. Sarah Johnson - Cardiologist with 15 years experience, smiling professional portrait" class="w-32 h-32 rounded-full mx-auto mb-4">
+                    <h3 class="text-2xl font-semibold text-gray-800">Dr. Sarah Johnson</h3>
+                    <p class="text-blue-600 mb-2">Cardiologist</p>
+                    <p class="text-gray-600 mb-4">15 years of experience in heart care and cardiovascular health.</p>
+                    <div class="flex justify-center space-x-2 mb-4">
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Available Today</span>
+                    </div>
+                    <button onclick="bookDoctor('Dr. Sarah Johnson')" class="btn-primary text-white px-6 py-2 rounded-lg">Book Appointment</button>
+                </div>
+
+                <!-- Doctor 2 -->
+                <div class="card-hover bg-white rounded-xl shadow-lg p-6 text-center">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1f3c1307-ed8a-4f6e-880c-08646faff210.png" alt="Dr. Michael Chen - Neurologist specialist in brain and nervous system disorders" class="w-32 h-32 rounded-full mx-auto mb-4">
+                    <h3 class="text-2xl font-semibold text-gray-800">Dr. Michael Chen</h3>
+                    <p class="text-blue-600 mb-2">Neurologist</p>
+                    <p class="text-gray-600 mb-4">Specialized in brain and nervous system disorders treatment.</p>
+                    <div class="flex justify-center space-x-2 mb-4">
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Not Available</span>
+                    </div>
+                    <button onclick="bookDoctor('Dr. Michael Chen')" class="btn-primary text-white px-6 py-2 rounded-lg opacity-50 cursor-not-allowed">Book Appointment</button>
+                </div>
+
+                <!-- Doctor 3 -->
+                <div class="card-hover bg-white rounded-xl shadow-lg p-6 text-center">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5cce99a5-9d6d-4b5b-9e40-738d9bb3ecd0.png" alt="Dr. Emily Rodriguez - Pediatrician caring for children's health with warm friendly approach" class="w-32 h-32 rounded-full mx-auto mb-4">
+                    <h3 class="text-2xl font-semibold text-gray-800">Dr. Emily Rodriguez</h3>
+                    <p class="text-blue-600 mb-2">Pediatrician</p>
+                    <p class="text-gray-600 mb-4">Dedicated to children's health and wellness with care.</p>
+                    <div class="flex justify-center space-x-2 mb-4">
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Available Today</span>
+                    </div>
+                    <button onclick="bookDoctor('Dr. Emily Rodriguez')" class="btn-primary text-white px-6 py-2 rounded-lg">Book Appointment</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointment Booking Section -->
+    <section id="appointment" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-16">Book Your Appointment</h2>
+            
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <form id="appointmentForm" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Full Name</label>
+                            <input type="text" id="patientName" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="Enter your full name" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Email Address</label>
+                            <input type="email" id="patientEmail" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Phone Number</label>
+                            <input type="tel" id="patientPhone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="Enter your phone number" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Select Doctor</label>
+                            <select id="doctorSelect" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent" required>
+                                <option value="">Choose a doctor</option>
+                                <option value="Dr. Sarah Johnson">Dr. Sarah Johnson - Cardiologist</option>
+                                <option value="Dr. Michael Chen">Dr. Michael Chen - Neurologist</option>
+                                <option value="Dr. Emily Rodriguez">Dr. Emily Rodriguez - Pediatrician</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Appointment Date</label>
+                            <input type="date" id="appointmentDate" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Appointment Time</label>
+                            <input type="time" id="appointmentTime" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent" required>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 mb-2">Reason for Visit</label>
+                        <textarea id="visitReason" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent" placeholder="Briefly describe your symptoms or reason for visit"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary text-white px-8 py-4 rounded-lg text-lg font-semibold w-full">
+                        Confirm Appointment
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3490aaa3-f845-4d98-8bff-73a86b5bd015.png" alt="Modern medical clinic interior with advanced equipment and comfortable waiting area" class="rounded-lg shadow-2xl">
+                </div>
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-800 mb-6">About MediBook</h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        MediBook is a revolutionary healthcare platform that connects patients with qualified doctors for seamless appointment booking. 
+                        Our mission is to make healthcare accessible and convenient for everyone.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                            <span class="text-gray-700">Instant appointment confirmation</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                            <span class="text-gray-700">Real-time doctor availability</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                            <span class="text-gray-700">Secure patient data management</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                            <span class="text-gray-700">24/7 customer support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">MediBook</h3>
+                    <p class="text-gray-400">Your trusted healthcare partner for convenient doctor appointments.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#doctors" class="text-gray-400 hover:text-white">Doctors</a></li>
+                        <li><a href="#appointment" class="text-gray-400 hover:text-white">Book Appointment</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Contact Info</h3>
+                    <div class="space-y-2">
+                        <p class="text-gray-400"><i class="fas fa-phone mr-2"></i> +1 (555) 123-4567</p>
+                        <p class="text-gray-400"><i class="fas fa-envelope mr-2"></i> info@medibook.com</p>
+                        <p class="text-gray-400"><i class="fas fa-map-marker-alt mr-2"></i> 123 Healthcare St, Medical City</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2024 MediBook. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">Login to Your Account</h3>
+            <form id="loginForm">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-gray-700 mb-2">Email</label>
+                        <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg" placeholder="Enter your email" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Password</label>
+                        <input type="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg" placeholder="Enter your password" required>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center mt-6">
+                    <button type="button" onclick="hideLoginModal()" class="text-gray-600 hover:text-gray-800">Cancel</button>
+                    <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">Create New Account</h3>
+            <form id="registerForm">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-gray-700 mb-2">Full Name</label>
+                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg" placeholder="Enter your full name" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Email</label>
+                        <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg" placeholder="Enter your email" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Password</label>
+                        <input type="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg" placeholder="Create a password" required>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Confirm Password</label>
+                        <input type="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg" placeholder="Confirm your password" required>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center mt-6">
+                    <button type="button" onclick="hideRegisterModal()" class="text-gray-600 hover:text-gray-800">Cancel</button>
+                    <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 text-center">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-check text-green-600 text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Appointment Booked!</h3>
+            <p class="text-gray-600 mb-6">Your appointment has been successfully scheduled. You will receive a confirmation email shortly.</p>
+            <button onclick="hideSuccessModal()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // Modal Functions
+        function showLoginModal() {
+            document.getElementById('loginModal').classList.remove('hidden');
+            document.getElementById('loginModal').classList.add('flex');
+        }
+
+        function hideLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+            document.getElementById('loginModal').classList.remove('flex');
+        }
+
+        function showRegisterModal() {
+            document.getElementById('registerModal').classList.remove('hidden');
+            document.getElementById('registerModal').classList.add('flex');
+        }
+
+        function hideRegisterModal() {
+            document.getElementById('registerModal').classList.add('hidden');
+            document.getElementById('registerModal').classList.remove('flex');
+        }
+
+        function showSuccessModal() {
+            document.getElementById('successModal').classList.remove('hidden');
+            document.getElementById('successModal').classList.add('flex');
+        }
+
+        function hideSuccessModal() {
+            document.getElementById('successModal').classList.add('hidden');
+            document.getElementById('successModal').classList.remove('flex');
+        }
+
+        function showAppointmentModal() {
+            document.getElementById('appointment').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function bookDoctor(doctorName) {
+            document.getElementById('doctorSelect').value = doctorName;
+            document.getElementById('appointment').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Form Handling
+        document.getElementById('appointmentForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('patientName').value,
+                email: document.getElementById('patientEmail').value,
+                phone: document.getElementById('patientPhone').value,
+                doctor: document.getElementById('doctorSelect').value,
+                date: document.getElementById('appointmentDate').value,
+                time: document.getElementById('appointmentTime').value,
+                reason: document.getElementById('visitReason').value
+            };
+
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<div class="loading-spinner mx-auto"></div>';
+            submitBtn.disabled = true;
+
+            try {
+                // Send to backend
+                const response = await fetch('http://localhost:5000/api/appointments', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    this.reset();
+                    showSuccessModal();
+                    // Track visit
+                    await fetch('http://localhost:5000/api/visits', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            type: 'appointment_booking',
+                            patientEmail: formData.email
+                        })
+                    });
+                } else {
+                    alert('Error booking appointment. Please try again.');
+                }
+            } catch (error) {
+                alert('Network error. Please check if the backend server is running.');
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Track page visits
+        window.addEventListener('load', async () => {
+            try {
+                await fetch('http://localhost:5000/api/visits', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        type: 'page_visit',
+                        page: window.location.hash || '#home'
+                    })
+                });
+            } catch (error) {
+                console.log('Backend not available for tracking');
+            }
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Set minimum date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('appointmentDate').min = today;
+    </script>
+</body>
+</html>
+
